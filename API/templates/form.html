@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Struggle</title>
+</head>
+<body>
+    <h2>User Struggle Questionnaire</h2>
+    <form action="/api/Strategy" method="POST">
+        <label for="user_struggle">User Struggle</label>
+        <input type="text" id="user_struggle" name="user_struggle" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Show the Battle Plan or Error -->
+    {% if battle_plan %}
+        <h3>Your Battle Plan:</h3>
+        <p>{{ battle_plan }}</p>
+    {% elif error %}
+        <p style="color:red;">Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>
