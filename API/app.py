@@ -8,9 +8,9 @@ load_dotenv()
 
 
 
-app=Flask(__name__)
+app=Flask(__name__) # Implement rate limiting (Flask-Limiter) & Force HTTPS in production
 
-GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
+GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY") # Don't forget to add key validation and graceful degradation
 client = genai.Client(api_key=GOOGLE_API_KEY)
 
 
@@ -24,7 +24,7 @@ def Get_form():
 @app.route("/api/Strategy", methods=["POST"])
 def get_battle_plan_strategy():
     
-    user_struggle_text=request.form.get("user_struggle")
+    user_struggle_text=request.form.get("user_struggle") # Implement input sanitization and length limits
 
     if not user_struggle_text:
          return render_template('form.html', error="Missing 'user_struggle' in the form.")
@@ -52,6 +52,6 @@ def get_battle_plan_strategy():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True) $ Use Production WSGI server (Gunicorn, uWSGI)
 
 
